@@ -1,0 +1,60 @@
+
+<script type="text/javascript">
+$(function(){
+  $('.navbar-nav li.active').removeClass('active');
+  $('.navbar-nav li').eq(1).addClass('active');
+  $('.login-frm .form-control').focus(function(){
+	$('.alert-danger').removeClass('show');
+	$('.alert-danger').addClass('hidden');
+  });
+  $('.login-btn').click(function(){
+  	console.log($('.login-frm').serialize());
+  	$.post('/u/login',$('.login-frm').serialize(),function(resp){
+  		console.log(resp);
+  		if(resp.code==2000){
+  			window.location.href="/";
+  		}else{
+  			$('.alert-danger').removeClass('hidden');
+  			$('.alert-danger').addClass('show');
+  		}
+  	});
+  });
+});
+</script>
+
+<div class="row">
+	<div class="container-fluid">
+		<div class="alert alert-danger hidden">
+		<strong>登录异常！</strong> 用户名或密码不正确，请重新登录
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container-fluid">
+	<fieldset>
+	<legend>用户登录</legend>
+	</fieldset>
+	</div>
+	<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+<form class="form-horizontal login-frm" autocomplete="off" onsubmit="false;">
+  <div class="form-group">
+    <label for="username" class="col-sm-2 control-label">用户名</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="username" placeholder="用户名"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">密码</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" name="password" placeholder="密码"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-primary login-btn">登录</button>
+    </div>
+  </div>
+</form>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+
+<script type="text/javascript">
+$(function(){
+  $('.navbar-nav li.active').removeClass('active');
+  $('.navbar-nav li').eq(2).addClass('active');
+  $('.reg-btn').click(function(){
+	  if($('.reg-frm .form-control').val()==""){
+		  return false;
+	  }
+	  $.post('/u/reg',$('.reg-frm').serialize(),function(resp){
+		  console.log(resp);
+		  if(resp.code==2001){
+			  window.location.href="/";
+		  }else{
+  			$('.alert-danger').removeClass('hidden');
+  			$('.alert-danger').addClass('show');
+		  }
+	  })
+  });
+});
+</script>
+
+<div class="row">
+	<div class="container-fluid">
+	<fieldset>
+	<legend>用户注册</legend>
+	</fieldset>
+	</div>
+	<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+<form class="form-horizontal reg-frm">
+  <div class="form-group">
+    <label for="username" class="col-sm-2 control-label">用户名</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="username" placeholder="用户名">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="nickname" class="col-sm-2 control-label">别名</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="nickname" placeholder="别名">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="useremail" class="col-sm-2 control-label">电子邮件</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" name="useremail" placeholder="电子邮件">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">密码</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" name="password" placeholder="密码">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password2" class="col-sm-2 control-label">确认密码</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" name="password2" placeholder="确认密码">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="button" class="btn btn-primary reg-btn">注册</button>
+    </div>
+  </div>
+</form>
+	</div>
+</div>

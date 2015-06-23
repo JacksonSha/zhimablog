@@ -1,0 +1,44 @@
+
+<script id="post-template" type="text/template">
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+<h2><span class="user-title">{{author}}</span> 说</h2>
+<p>{{content}}</p>
+</div>
+</script>
+
+<script type="text/javascript">
+$(function(){
+  var last=function(){
+	$.get('/u/post/last', {}, function(resp){
+		console.log(resp);
+		var el = $(".post-list");
+		$(el).empty();
+		var postTmp=_.template($("#post-template").html());
+		for(var i=0;i<resp.length;i++){
+			var pst=resp[i];
+			$(el).append(postTmp({
+				author: pst.userNickname,
+				content: pst.content
+			}));
+		}
+	});
+  };
+  last();
+});
+</script>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div class="jumbotron">
+	  <h1>欢迎来到<b>芝麻博客</b></h1>
+	  <p>芝麻博客是一个基于 Node.js 的微博系统。</p>
+	  <p>
+	  <a class="btn btn-primary btn-lg" href="/login" role="button">登录</a>
+	  <a class="btn btn-lg" href="/reg">立即注册</a>
+	  </p>
+	</div>
+	</div>
+</div>
+
+<div class="row post-list">
+</div>

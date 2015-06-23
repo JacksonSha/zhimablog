@@ -1,0 +1,24 @@
+.navbar {
+	border-radius: 0px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #30B6F5;
+	border-color: #30B6F5;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #1097D6;
+	border-color: #1097D6;
+}
+
+.jumbotron h1 b {
+	color: #30B6F5;
+}
+
+.user-title {
+	color: #30B6F5;
+	font-weight: bold;
+}

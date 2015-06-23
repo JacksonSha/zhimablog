@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Error</title>
+<link rel='stylesheet' type='text/css' href='/bootstrap/css/bootstrap.min.css' />
+<link rel='stylesheet' type='text/css' href='/css/index.css' />
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header class="container-fluid">
+<div class="row">
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">芝麻博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="/login">登录</a></li>
+            <li><a href="/reg">注册</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div>
+</nav>
+</div>
+</header>
+
+<div class="container">
+<div class="row">
+<h1><%=message %></h1>
+<h1><%=error.status %></h1>
+<pre><%=error.stack %></pre>
+</div>
+</div>
+
+<footer class="container">
+<div class="row">
+<hr/>
+  <p class="">©2015 <a href="http://www.cnblogs.com/stangtang/" target="_blank">芝麻加糖</a></p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+
+<script id="post-template" type="text/template">
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+<h2><span class="user-title">{{author}}</span> 说</h2>
+<p>{{content}}</p>
+</div>
+</script>
+
+<script type="text/javascript">
+$(function(){
+  var refresh=function(){
+	$.get('/u/post/all', {}, function(resp){
+		console.log(resp);
+		var el = $(".post-list");
+		$(el).empty();
+		var postTmp=_.template($("#post-template").html());
+		for(var i=0;i<resp.length;i++){
+			var pst=resp[i];
+			$(el).append(postTmp({
+				author: pst.userNickname,
+				content: pst.content
+			}));
+		}
+	});
+  };
+  var post=function(txt){
+	$.post('/u/post', {post: txt}, function(resp){
+  	  console.log(resp);
+      $('.post-text').val('');
+      refresh();
+	});
+  };
+  $('.post-btn').click(function(){
+	console.log($('.post-text').val());
+	post($('.post-text').val());
+  });
+  refresh();
+});
+</script>
+
+<!-- <div class="row">
+	<div class="container-fluid">
+	<h1>欢迎你，<span class="username"></span></h1>
+	</div>
+</div> -->
+
+<div class="row">
+	<div class="jumbotron">
+		<textarea class="form-control post-text" rows="3"></textarea>
+		<br/>
+		<input type="button" class="btn btn-primary post-btn" value="发布"/>
+	</div>
+</div>
+
+<div class="row post-list">
+</div>
