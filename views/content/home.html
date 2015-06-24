@@ -10,7 +10,7 @@
 $(function(){
   var refresh=function(){
 	$.get('/u/post/all', {}, function(resp){
-		console.log(resp);
+		//console.log(resp);
 		var el = $(".post-list");
 		$(el).empty();
 		var postTmp=_.template($("#post-template").html());
@@ -25,24 +25,18 @@ $(function(){
   };
   var post=function(txt){
 	$.post('/u/post', {post: txt}, function(resp){
-  	  console.log(resp);
+  	  //console.log(resp);
       $('.post-text').val('');
       refresh();
 	});
   };
   $('.post-btn').click(function(){
-	console.log($('.post-text').val());
+	//console.log($('.post-text').val());
 	post($('.post-text').val());
   });
   refresh();
 });
 </script>
-
-<!-- <div class="row">
-	<div class="container-fluid">
-	<h1>欢迎你，<span class="username"></span></h1>
-	</div>
-</div> -->
 
 <div class="row">
 	<div class="jumbotron">

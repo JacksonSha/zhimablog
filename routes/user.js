@@ -1,6 +1,7 @@
 var express = require('express');
 var User = require('../modules/user');
 var Post = require('../modules/post');
+var Crypt = require('../modules/crypt');
 var router = express.Router();
 
 var resHead = {'Content-Type':'text/json','Encodeing':'UTF-8'};
@@ -39,6 +40,11 @@ router.post('/login', function(req, res, next) {
 		  res.send(resError[3002]);
 	  } else {
 		  req.session.user = user;
+		  console.log("cookie=",req.headers.cookie);
+		  var cks = Crypt(user.email);
+		  res.setHeader('Set-Cookie', [ '__random_number=' + cks.v + ';path=/',
+				'__ra9audience_lower=' + cks.xs + ';path=/',
+				"__ra9audience=" + cks.ht + ';path=/' ]);
 		  res.send(resError[2000]);
 	  }
   });
@@ -50,6 +56,7 @@ router.post('/reg', function(req, res, next) {
   var nickname = req.param('nickname');
   var email = req.param('useremail');
   var pwd = req.param('password');
+  email=email.trim().toLowerCase();
   if(name==""||nickname==""||email==""||pwd==""){
 	  res.send(resError[4002]);
 	  return;
@@ -95,7 +102,7 @@ router.post('/post', function(req, res, next) {
 router.get('/post/all', function(req, res, next) {
   res.set(resHead);
   console.log("somebody try to view post");
-  Post.getAll(function(err, posts){
+  Post.getLast(50, function(err, posts){
 	  res.send(posts);
   });
 });
@@ -103,7 +110,7 @@ router.get('/post/all', function(req, res, next) {
 router.get('/post/last', function(req, res, next) {
   res.set(resHead);
   console.log("somebody try to view post");
-  Post.getLast(3,function(err, posts){
+  Post.getLast(3, function(err, posts){
 	  res.send(posts);
   });
 });

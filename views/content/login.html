@@ -3,6 +3,12 @@
 $(function(){
   $('.navbar-nav li.active').removeClass('active');
   $('.navbar-nav li').eq(1).addClass('active');
+  $('input[name="username"]').trigger("focus");
+  $('input[name="password"]').keyup(function(evt){
+	  if(evt.keyCode===13){
+		  $('.login-btn').trigger('click');
+	  }
+  });
   $('.login-frm .form-control').focus(function(){
 	$('.alert-danger').removeClass('show');
 	$('.alert-danger').addClass('hidden');
