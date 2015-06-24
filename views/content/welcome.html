@@ -10,7 +10,7 @@
 $(function(){
   var last=function(){
 	$.get('/u/post/last', {}, function(resp){
-		console.log(resp);
+		//console.log(resp);
 		var el = $(".post-list");
 		$(el).empty();
 		var postTmp=_.template($("#post-template").html());

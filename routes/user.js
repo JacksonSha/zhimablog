@@ -42,9 +42,9 @@ router.post('/login', function(req, res, next) {
 		  req.session.user = user;
 		  console.log("cookie=",req.headers.cookie);
 		  var cks = Crypt(user.email);
-		  res.setHeader('Set-Cookie', [ '__random_number=' + cks.v + ';path=/',
-				'__ra9audience_lower=' + cks.xs + ';path=/',
-				"__ra9audience=" + cks.ht + ';path=/' ]);
+		  res.setHeader('Set-Cookie', [ '__v=' + cks.v + ';path=/',
+				'__al=' + cks.xs + ';path=/',
+				"__a=" + cks.ht + ';path=/' ]);
 		  res.send(resError[2000]);
 	  }
   });

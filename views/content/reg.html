@@ -8,7 +8,7 @@ $(function(){
 		  return false;
 	  }
 	  $.post('/u/reg',$('.reg-frm').serialize(),function(resp){
-		  console.log(resp);
+		  //console.log(resp);
 		  if(resp.code==2001){
 			  window.location.href="/";
 		  }else{

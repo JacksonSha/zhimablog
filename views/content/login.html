@@ -14,9 +14,8 @@ $(function(){
 	$('.alert-danger').addClass('hidden');
   });
   $('.login-btn').click(function(){
-  	console.log($('.login-frm').serialize());
   	$.post('/u/login',$('.login-frm').serialize(),function(resp){
-  		console.log(resp);
+  		//console.log(resp);
   		if(resp.code==2000){
   			window.location.href="/";
   		}else{
